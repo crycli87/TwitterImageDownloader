@@ -10,6 +10,7 @@ $.each(tweets, addButton);
 
 function addButton(index, tweet){
   var originUrl = getOriginUrl(tweet);
+  var fileName = getFileName(originUrl);
   $(tweet).find("div.ProfileTweet-actionList").append(buttonElement);
   $(".Dl-Image").find("a").attr("href":originUrl);
 }
@@ -17,4 +18,10 @@ function addButton(index, tweet){
 function getOriginUrl(tweet){
   var imgUrl = $(tweet).find(".AdaptiveMedia-photoContainer > img").attr("src");
   return imgUrl + ":orig";
+}
+
+function getFileName(url){
+  var splited = url.split("/");
+  var name = splited[splited.length-1].split(":")[0];
+  return name;
 }
