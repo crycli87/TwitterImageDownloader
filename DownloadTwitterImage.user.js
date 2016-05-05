@@ -1,10 +1,8 @@
-/*
-画像を持ってるツイートは#has-cards #has-content を持ってる.
-ただし動画とかでもそう.
-画像の場合その下に#AdaptiveMedia-photoContainer を持ってる.
-この下のimgタグが本体.
-(ちなみにgifは動画扱いのよう)
-*/
+// TODO:複数ファイル対応. 多分aタグのdownloadではダメなのでonClickでやる.
+// TODO:ファイル名を.jpg-origからちゃんとしたのに直す
+var buttonStyle = "";
+var buttonElement = '<div class="ProfileTweet-action Dl-Image"><a download href=""><input type="button" value="画像をDL" style="width: 70px;"></a></div>"';
+
 (function main() {
 var tweets = $(".tweet:has(.AdaptiveMedia-photoContainer)");
 $.each(tweets, addButton);
@@ -12,7 +10,8 @@ $.each(tweets, addButton);
 
 function addButton(index, tweet){
   var originUrl = getOriginUrl(tweet);
-  // TODO: ボタン追加
+  $(tweet).find("div.ProfileTweet-actionList").append(buttonElement);
+  $(".Dl-Image").find("a").attr("href":originUrl);
 }
 
 function getOriginUrl(tweet){
