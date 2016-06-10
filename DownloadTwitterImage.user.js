@@ -1,12 +1,19 @@
-// TODO: 複数ファイルDL時になんか許可が必要なの治す
 var buttonStyle = "";
 var buttonElement = '<div class="ProfileTweet-action Dl-Image"><input type="button" value="画像をDL" style="width: 70px;"></div>"';
 
 (function main() {
-var tweets = $(".tweet:has(.AdaptiveMedia-photoContainer)");
-// TODO: 動的に読み込まれた奴にボタン適応できてないようす.
-$.each(tweets, addButton);
+run();
+var mutationObserver = new MutationObserver(function(mutationRecords){
+  run();
+});
+var target = document.querySelector("#stream-items-id");
+if(target) mutationObserver.observe(target, {childList: true, subtree: true});
 })();
+
+function run(){ //TODO: 関数名センスなさすぎるのでなんとかしたい
+  var tweets = $(".tweet:has(.AdaptiveMedia-photoContainer):not(:has(.Dl-Image))");
+  $.each(tweets, addButton);
+}
 
 function addButton(index, tweet){
   var originUrls = getOriginUrls(tweet);
