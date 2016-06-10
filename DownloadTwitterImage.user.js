@@ -33,6 +33,8 @@ function download(event){
     };
     request.send();
   });
+  event.preventDefault();
+  event.stopPropagation();
 }
 
 function getOriginUrls(tweet){
