@@ -6,8 +6,10 @@ run();
 var mutationObserver = new MutationObserver(function(mutationRecords){
   run();
 });
-var target = document.querySelector("#stream-items-id");
-if(target) mutationObserver.observe(target, {childList: true, subtree: true});
+var dynamicallyLoadedTweet = document.querySelector("#stream-items-id");
+var tweetDetails = document.querySelector("#permalink-overlay");
+if(dynamicallyLoadedTweet) mutationObserver.observe(dynamicallyLoadedTweet, {childList: true, subtree: true});
+if(tweetDetails) mutationObserver.observe(tweetDetails, {childList: true, subtree:true});
 })();
 
 function run(){ //TODO: 関数名センスなさすぎるのでなんとかしたい
