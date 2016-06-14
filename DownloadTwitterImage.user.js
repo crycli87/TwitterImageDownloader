@@ -2,7 +2,7 @@ var buttonStyle = "";
 var buttonElement = '<div class="ProfileTweet-action Dl-Image"><input type="button" value="画像をDL" style="width: 70px;"></div>"';
 
 (function main() {
-run();
+unsafeWindow.onload = run();
 var mutationObserver = new MutationObserver(function(mutationRecords){
   run();
 });
