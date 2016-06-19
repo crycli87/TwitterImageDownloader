@@ -1,3 +1,13 @@
+// ==UserScript==
+// @name         twitterの画像DLするの
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @author       You
+// @match        https://twitter.com/*
+// @require http://code.jquery.com/jquery-2.1.4.js
+// @grant        GM_log
+// ==/UserScript==
+
 var buttonStyle = "";
 var buttonElement = '<div class="ProfileTweet-action Dl-Image"><input type="button" value="画像をDL" style="width: 70px;"></div>"';
 
