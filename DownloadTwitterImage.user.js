@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         twitterの画像DLするの
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      1.0b.1
 // @author       crycli87
 // @match        https://twitter.com/*
 // @require      http://code.jquery.com/jquery-2.1.4.js
