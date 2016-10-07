@@ -16,9 +16,9 @@ unsafeWindow.onload = run();
 var mutationObserver = new MutationObserver(function(mutationRecords){
   run();
 });
-var dynamicallyLoadedTweet = document.querySelector("#stream-items-id");
+var timeLine = document.querySelector("#timeline");
 var tweetDetails = document.querySelector("#permalink-overlay");
-if(dynamicallyLoadedTweet) mutationObserver.observe(dynamicallyLoadedTweet, {childList: true, subtree: true});
+if(timeLine) mutationObserver.observe(timeLine, {childList: true, subtree: true});
 if(tweetDetails) mutationObserver.observe(tweetDetails, {childList: true, subtree:true});
 })();
 
