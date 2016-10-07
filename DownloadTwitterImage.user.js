@@ -16,21 +16,29 @@ unsafeWindow.onload = run();
 var mutationObserver = new MutationObserver(function(mutationRecords){
   run();
 });
-var dynamicallyLoadedTweet = document.querySelector("#stream-items-id");
+var timeLine = document.querySelector("#timeline");
 var tweetDetails = document.querySelector("#permalink-overlay");
-if(dynamicallyLoadedTweet) mutationObserver.observe(dynamicallyLoadedTweet, {childList: true, subtree: true});
+if(timeLine) mutationObserver.observe(timeLine, {childList: true, subtree: true});
 if(tweetDetails) mutationObserver.observe(tweetDetails, {childList: true, subtree:true});
 })();
 
 function run(){ //TODO: 関数名センスなさすぎるのでなんとかしたい
   var tweets = $(".tweet:has(.AdaptiveMedia-photoContainer):not(:has(.Dl-Image))");
+  GM_log(tweets.length);
   $.each(tweets, addButton);
+  var observer = new MutationObserver(function (MutationRecords, MutationObserver) {
+    var tweets = $(".tweet:has(.AdaptiveMedia-photoContainer):not(:has(.Dl-Image))");
+    $.each(tweets, addButton);
+  });
+  observer.observe($('#stream-items-id').get(0), {
+    childList: true,
+  });
 }
 
 function addButton(index, tweet){
   var originUrls = getOriginUrls(tweet);
   $(tweet).find("div.ProfileTweet-actionList").append(buttonElement);
-  $(tweet).find("input").bind("click", {urls:originUrls}, download);
+  $(tweet).find(".Dl-Image").bind("click", {urls:originUrls}, download);
 }
 
 function download(event){
