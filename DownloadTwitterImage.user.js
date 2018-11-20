@@ -37,15 +37,17 @@ function run(){ //TODO: 関数名センスなさすぎるのでなんとかし�
 
 function addButton(index, tweet){
   var originUrls = getOriginUrls(tweet);
+  var userId = $(tweet).find(".username > b").eq(0).text();
   $(tweet).find("div.ProfileTweet-actionList").append(buttonElement);
-  $(tweet).find(".Dl-Image").bind("click", {urls:originUrls}, download);
+  $(tweet).find(".Dl-Image").bind("click", {urls:originUrls, userId:userId}, download);
 }
 
 function download(event){
   var urls = event.data.urls;
+  var userId = event.data.userId;
   urls.forEach(function(url,i,ar){
     var request = new XMLHttpRequest();
-    var fileName = getFileName(url);
+    var fileName = userId + "-" + getFileName(url);
     request.open("GET", url, true);
     request.responseType = "blob";
     request.onload = function (e) {
